@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -7,28 +7,35 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [newTask, setNewTask] = useState("");
 	const [tasks, setTasks] = useState([]);
-	const [taskCount, setTaskCount] = useState(0);
-	
-    function addTask(event) {
-		if (event.key === "Enter"){
-		let newArray = tasks.concat(newTask)	
+
+	function addTask(event) {
+		if (event.key === "Enter") {
+			setTasks(tasks.concat(newTask));
+			setNewTask("");
 		}
 	}
-	
+
 	return (
 		<div className="text-center">
-
-		    <h1>Mis Tareas</h1>
+			<h1>Mis Tareas</h1>
 			<ul>
-			<li><input type="text" placeholder="¿Qué tengo que hacer?" onChange = { (event) => setNewTask(event.target.value)} onKeyDown={addTask}></input></li>
-			<li>Buenas tardes</li>
-			<li>Buenos dias</li>
-			<li>Buena noches</li>
+				<li>
+					<input
+						type="text"
+						value={newTask}
+						onChange={(event) => setNewTask(event.target.value)}
+						onKeyDown={addTask}
+						placeholder="¿Qué tengo que hacer?"
+					/>
+				</li>
+				{tasks.map((task, index) => (
+					<li key={index}>{task}</li>
+				))}
 			</ul>
-
-		
+			<div id="pendiente">
+				{tasks.length} tareas pendientes
+			</div>
 		</div>
 	);
 };
-
 export default Home;
