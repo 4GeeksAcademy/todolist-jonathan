@@ -8,12 +8,19 @@ const Home = () => {
 	const [newTask, setNewTask] = useState("");
 	const [tasks, setTasks] = useState([]);
 
+// Añadir una tarea
 	function addTask(event) {
 		if (event.key === "Enter") {
 			setTasks(tasks.concat(newTask));
 			setNewTask("");
 		}
 	}
+
+// Borrar una tarea
+	function deleteTask(index) {
+		setTasks(tasks.filter((_, i) => i !== index));
+	}
+
 
 	return (
 		<div className="text-center">
@@ -29,7 +36,8 @@ const Home = () => {
 					/>
 				</li>
 				{tasks.map((task, index) => (
-					<li key={index}>{task}</li>
+					<li key={index}>{task}<span onClick={() => deleteTask(index)}><i class="fa-regular fa-trash-can"></i></span>
+					</li>
 				))}
 			</ul>
 			<div id="pendiente">
