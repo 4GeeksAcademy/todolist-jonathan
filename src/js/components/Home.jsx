@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //include images into your bundle
 import rigoImage from "../../img/rigo-baby.jpg";
@@ -7,6 +7,22 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [newTask, setNewTask] = useState("");
 	const [tasks, setTasks] = useState([]);
+	const [todos, setTodos] = useState ([])
+
+//Funcion para coger las tareas del usuario
+	function getTodos() {
+		fetch('https://playground.4geeks.com/todo/users/jonathanfd',{method:"GET"})
+		.then((response)=>{
+			return response.json()}) 
+		.then((data)=>setTodos(data))
+		.catch((error)=>console.log(error)) 
+	}
+
+	
+//Funcion para hacer lo mismo que window.onload
+	useEffect(()=>{
+		getTodos()
+	},[])
 
 // Añadir una tarea
 	function addTask(event) {
