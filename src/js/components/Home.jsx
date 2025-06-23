@@ -7,24 +7,78 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [newTask, setNewTask] = useState("");
 	const [tasks, setTasks] = useState([]);
-	const [todos, setTodos] = useState ([])
+	const [todos, setTodos] = useState([])
+	const [user, setUser] = useState("");
 
-//Funcion para coger las tareas del usuario
-	function getTodos() {
-		fetch('https://playground.4geeks.com/todo/users/jonathanfd',{method:"GET"})
-		.then((response)=>{
-			return response.json()}) 
-		.then((data)=>setTodos(data))
-		.catch((error)=>console.log(error)) 
+
+	//Funcion para crear un usuario
+	/* 	function createUser() {
+			fetch('https://playground.4geeks.com/todo/users/jonathanfd', { method: "POST" })
+				.then((response) => {
+					return response.json()
+				})
+				.then((data) => setUser(data))
+				.catch((error) => console.log(error))
+		} */
+
+
+
+	//Funcion para crear nuevas tareas
+	/* function createTask() {
+	let task = "Jugar con la pelotita"
+
+		fetch('https://playground.4geeks.com/todo/todos/jonathanfd', {
+			method: "POST",
+			body: JSON.stringify({
+			"label": task,
+			"is_done": false}),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+			.then(response => {
+					console.log(response);
+			if (response.status === 201) {
+				getTasks()
+			}
+			
+			return response.json()})
+		.then((data)=>console.log(data))
+		.catch((error)=>console.log(error))
+
 	}
+ */
 
-	
-//Funcion para hacer lo mismo que window.onload
-	useEffect(()=>{
+
+	//Funcion para borrar una tarea
+	/* function deleteTask() {
+		fetch('https://playground.4geeks.com/todo/users/jonathanfd', { method: "DELETE" })
+			.then((response) => {
+				return response.json()
+			})
+			.then((data) => setTodos(data))
+			.catch((error) => console.log(error))
+	} */
+
+
+
+	//Funcion para coger las tareas del usuario
+	/* function getTodos() {
+		fetch('https://playground.4geeks.com/todo/users/jonathanfd', { method: "GET" })
+			.then((response) => {
+				return response.json()
+			})
+			.then((data) => setTodos(data))
+			.catch((error) => console.log(error))
+	} */
+
+
+	//Funcion para hacer lo mismo que window.onload
+	/* useEffect(() => {
 		getTodos()
-	},[])
+	}, [])  */
 
-// Añadir una tarea
+	// Añadir una tarea
 	function addTask(event) {
 		if (event.key === "Enter") {
 			setTasks(tasks.concat(newTask));
@@ -32,7 +86,7 @@ const Home = () => {
 		}
 	}
 
-// Borrar una tarea
+	// Borrar una tarea
 	function deleteTask(index) {
 		setTasks(tasks.filter((_, i) => i !== index));
 	}
