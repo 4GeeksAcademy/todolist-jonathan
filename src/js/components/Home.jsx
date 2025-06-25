@@ -7,7 +7,6 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	const [newTask, setNewTask] = useState("");
 	const [tasks, setTasks] = useState([]);
-	/* const [todos, setTodos] = useState([]) */
 	const [user, setUser] = useState("");
 
 
@@ -123,7 +122,7 @@ const Home = () => {
 
 
 
-					<li key={index}>{task.label}<span onClick={() => deleteTask(index)}><i className="fa-regular fa-trash-can"></i></span>
+					<li key={index}>{task.label}<span onClick={() => deleteTask(task.id)}><i className="fa-regular fa-trash-can"></i></span>
 					</li>
 
 				))}
